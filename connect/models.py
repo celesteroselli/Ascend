@@ -6,7 +6,6 @@ class Connection(models.Model):
     earthling = models.OneToOneField(User, on_delete=models.CASCADE, related_name='earth')
 
 class Message(models.Model):
-    connection = models.ForeignKey(Connection, on_delete=models.CASCADE, related_name='connect')
     msg_from = models.OneToOneField(User, on_delete=models.CASCADE, related_name='msg_from')
     msg_to = models.OneToOneField(User, on_delete=models.CASCADE, related_name='msg_to')
     video = models.FileField()

@@ -82,7 +82,7 @@ DATABASES = {
     }
 }
 
-RANDOM_IMAGE_DIR = os.path.join(BASE_DIR,'media')
+MEDIA_URL = os.path.join(BASE_DIR,'media/')
 
 
 # Password validation
