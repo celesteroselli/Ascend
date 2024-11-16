@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import *
+import cv2 
+import numpy as np
 
 def home(request):
     connections = Connection.objects.filter(astronaut=request.user)
