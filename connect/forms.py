@@ -8,3 +8,10 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         exclude = ("msg_from","msg_to",)
+
+class ChangeImage(forms.ModelForm):
+    image = forms.FileInput()
+
+    class Meta:
+        model = Profile
+        exclude = ("user",)

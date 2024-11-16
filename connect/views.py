@@ -17,9 +17,24 @@ def home(request):
     print(randomnum)
     image = os.path.join(BASE_DIR,str("media/images/"+str(randomnum))+".jpg/")
     print(image)
+    bg = request.user.profile.image
+
+    form = ChangeImage(instance=Profile.objects.get(user=request.user))
+    if request.method == 'POST':
+        form = ChangeImage(request.POST,request.FILES, instance=Profile.objects.get(user=request.user))
+        if form.is_valid():
+            change = form.save()
+            request.user.profile.image = change.image
+            change.save()
+            print("valid")
+            print(request.user.profile.image)
+            return redirect('home')
+        else:
+            print("invalid")
+            print(form.errors)
 
     connections = Connection.objects.filter(astronaut=request.user)
-    return render(request, "base.html", {"connections":connections, "image_url":image, "date":date})
+    return render(request, "picture.html", {"connections":connections, "image_url":image, "date":date, "bg":bg, "form":form})
 
 def connection(request, username):
     form = MessageForm(request.POST or None)

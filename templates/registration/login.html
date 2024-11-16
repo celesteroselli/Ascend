@@ -1,5 +1,10 @@
-{% extends 'base.html' %}
+{% block content %}
 <style>
+    .body {
+        position: absolute;
+        top: 20%;
+        left: 40%
+    }
     .body-wrap{
   justify-content: center;
   padding: 20px;
@@ -35,29 +40,29 @@
 
 
 h2{
-    
     font-family: D-DIN-Bold, Arial, Verdana;
     text-align: center;
 }
 footer{
+    height: 10px;
     background-color:#c0b4cc;
 }
 </style>
-{% block content %}
+<div class="body">
 <div class="body-wrap">
     <h2>Login</h2>
     <div class="login-wrap">
         <form method="post">
         <label for="uname">Username:</label><br><br>
-        <input type="text" id="uname" name="uname"><br><br>
+        {{ form.username }}<br><br>
         <label for="pass">Password:</label><br><br>
-        <input type="text" id="pass" name="pass"><br><br>
+        {{ form.password }}<br><br>
         {% csrf_token %}
-        {{ form.as_p }}
 
         <input type="submit" class="button" value="Login">
         </form>
     </div>
+</div>
 </div>
 <footer>
     <br>
