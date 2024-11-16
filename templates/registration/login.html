@@ -1,11 +1,65 @@
 {% extends 'base.html' %}
+<style>
+    .body-wrap{
+  justify-content: center;
+  padding: 20px;
+  width: 300px;
+  align-items: center;
+  flex: 1 0 auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+}
 
+.login-wrap{
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 5px 3px rgba(126, 39, 207, 0.1);
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: D-DIN-Bold, Arial, Verdana;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button{
+    
+    font-family: D-DIN-Bold, Arial, Verdana;
+    background-color:#7e27cf;
+    color: white;
+    justify-content: center;
+}
+
+
+h2{
+    
+    font-family: D-DIN-Bold, Arial, Verdana;
+    text-align: center;
+}
+footer{
+    background-color:#c0b4cc;
+}
+</style>
 {% block content %}
-<h2>Login</h2>
+<div class="body-wrap">
+    <h2>Login</h2>
+    <div class="login-wrap">
+        <form method="post">
+        <label for="uname">Username:</label><br><br>
+        <input type="text" id="uname" name="uname"><br><br>
+        <label for="pass">Password:</label><br><br>
+        <input type="text" id="pass" name="pass"><br><br>
+        {% csrf_token %}
+        {{ form.as_p }}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-</form>
+        <input type="submit" class="button" value="Login">
+        </form>
+    </div>
+</div>
+<footer>
+    <br>
+</footer>
 {% endblock %}
