@@ -3,6 +3,7 @@ from .models import *
 
 class MessageForm(forms.ModelForm):
     video = forms.FileInput()
+    content = forms.CharField(required=False)
 
     class Meta:
         model = Message

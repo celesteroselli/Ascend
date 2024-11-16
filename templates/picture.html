@@ -1,0 +1,10 @@
+{% load static %}
+<style>
+    .crop {
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+    }
+</style>
+<img class="crop" src="{{image_url}}">
+<h3>Here's your daily memory from {{date}}</h3>

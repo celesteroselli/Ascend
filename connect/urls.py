@@ -4,4 +4,5 @@ from connect import views
 urlpatterns = [
     path("", views.home, name='home'),
     path("create/<str:username>", views.video, name='create'),
+    path("connection/<str:username>", views.connection, name='connection'),
 ]
