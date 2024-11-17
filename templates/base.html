@@ -10,6 +10,10 @@
     <script src="https://kit.fontawesome.com/cc67a321ce.js" crossorigin="anonymous"></script>
 
     <style>
+
+.this_border {
+    border-bottom: 4px solid #7e27cf;
+  } 
         body {
             background-color: black;
         }
@@ -131,7 +135,7 @@
         <div class="logo"><a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" width=280px></a></div>
         <div class="user"><a data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="icon fa-solid fa-user" style="color: #B197FC;"></i></a></div> 
       </div>
-      <div class = "scroll-container"> 
+      <div class = "scroll-container this_border"> 
       <a class="link_user_profile" href="{% url 'connection' 'celesteroselli' %}"><img src="{% static 'pp1.png' %}" class="person_pic"></a>
       <a class="link_user_profile" href="{% url 'connection' 'johnsmith' %}"><img src="{% static 'pp11.png' %}" class="person_pic"></a>
       <a class="link_user_profile" href="{% url 'connection' 'jackgeorge' %}"><img src="{% static 'pp3.png' %}" class="person_pic"></a>

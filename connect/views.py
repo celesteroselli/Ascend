@@ -48,11 +48,11 @@ def connection(request, username):
             print(message.msg_to)
             message.save()
             print("valid")
+            return redirect("connection", username)
         else:
             print("invalid")
             print(form.errors)
     bg = request.user.profile.image
-
     form2 = ChangeImage(instance=Profile.objects.get(user=request.user))
     if request.method == 'POST':
         form2 = ChangeImage(request.POST,request.FILES, instance=Profile.objects.get(user=request.user))
