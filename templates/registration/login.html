@@ -1,4 +1,4 @@
-% block content %}
+{% block content %}
 <style>
 body {
         position: absolute;
@@ -16,14 +16,14 @@ body {
   margin-left: auto;
   margin-right: auto;
   flex-wrap: wrap;
-  color:white;
+  color: white;
 }
 
 .login-wrap{
   border: 1px solid white;
   border-radius: 5px;
   box-shadow: 5px 3px rgba(99, 54, 143, 0.366);
-  padding: 20px;
+  margin: 20px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -38,6 +38,7 @@ body {
     background-color:#7e27cf;
     color: white;
     justify-content: center;
+
 }
 
 
@@ -55,6 +56,36 @@ footer{
   color: gold;
   animation: fall 1.5s ease-out forwards;
 }
+#add-button {
+  align-items: center;
+  appearance: none;
+  background-image: linear-gradient(to right,#6253e1, #F24645);
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .3) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: D-DIN-Bold, Arial, Verdana;
+  font-size: 16px;
+  font-weight: 500;
+  margin: .25in auto .25in auto;
+  height: 35px;
+  max-width: 100%;
+  justify-content: center;
+  letter-spacing: .30px;
+  line-height: normal;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: hue-rotate(90deg);
+  filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2));
+  z-index: 0;
+}
 
 @keyframes fall {
   0% {
@@ -68,6 +99,8 @@ footer{
 }
 
 </style>
+
+
 <div class="body">
 <div class="body-wrap">
     <h2>Login</h2>
@@ -78,13 +111,13 @@ footer{
         <label for="pass">Password:</label><br><br>
         {{ form.password }}<br><br>
         {% csrf_token %}
-        <div id="particle-area1"></div>   
         <input type="submit" class="button" id="add-button" value="Login">
-        <div id="particle-area2"></div>   
         </form>
     </div>
 </div>
 </div>
+
+
 <footer>
     <br>
 </footer>
@@ -92,27 +125,31 @@ footer{
 const loginButton = document.getElementById("add-button");
 
 loginButton.addEventListener("click", function (event) {
-  event.preventDefault(); // delete later, just for testing
+  event.preventDefault();
 
-  for (let i = 0; i < 3; i++) {
-    createFallingStar(loginButton);
+  for (let i = 0; i < 20; i++) {
+    createLeftFallingStar(loginButton);
+    createRightFallingStar(loginButton);  
   }
+  setTimeout(() => {
+    form.submit();
+  }, 1500); // THIS SHOULD
 });
 
-function createFallingStar(button) {
+function createLeftFallingStar(button) {
   const star = document.createElement("div");
   star.classList.add("star");
   star.textContent = "⭐";
   const buttonRect = button.getBoundingClientRect();
-  const startX = buttonRect.left + Math.random() * buttonRect.width;
-  const startY = buttonRect.top;
+  const startX = Math.random() * -600;
+  const startY = 0;
   document.body.appendChild(star);
   star.style.position = "absolute";
   star.style.left = `${startX}px`;
   star.style.top = `${startY}px`;
-  const endX = startX + (Math.random() - 0.5) * 200;
+  const endX = startX + Math.random() * 200;
   const endY = startY + 300 + Math.random() * 100; 
-  star.style.transition = "transform 1.5s ease-out, opacity 1.5s ease-out";
+  star.style.transition = "transform 1s ease-out, opacity 1s ease-out";
   requestAnimationFrame(() => {
     star.style.transform = `translate(${endX - startX}px, ${endY - startY}px) rotate(360deg)`;
     star.style.opacity = "0";
@@ -121,6 +158,27 @@ function createFallingStar(button) {
     star.remove();
   }, 1500);
 }
-
+function createRightFallingStar(button) {
+  const star = document.createElement("div");
+  star.classList.add("star");
+  star.textContent = "⭐";
+  const buttonRect = button.getBoundingClientRect();
+  const startX = Math.random() * 850;
+  const startY = 0;
+  document.body.appendChild(star);
+  star.style.position = "absolute";
+  star.style.left = `${startX}px`;
+  star.style.top = `${startY}px`;
+  const endX = startX + Math.random() * 200;
+  const endY = startY + 300 + Math.random() * 100; 
+  star.style.transition = "transform 1s ease-out, opacity 1s ease-out";
+  requestAnimationFrame(() => {
+    star.style.transform = `translate(${endX - startX}px, ${endY - startY}px) rotate(360deg)`;
+    star.style.opacity = "0";
+  });
+  setTimeout(() => {
+    star.remove();
+  }, 1500);
+}
 </script>
 {% endblock %}
