@@ -132,8 +132,8 @@ loginButton.addEventListener("click", function (event) {
     createRightFallingStar(loginButton);  
   }
   setTimeout(() => {
-    form.submit();
-  }, 1500); // THIS SHOULD
+    hiddenSubmitButton.click();
+  }, 1500); //THIS SHOULD
 });
 
 function createLeftFallingStar(button) {
