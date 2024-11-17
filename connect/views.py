@@ -51,6 +51,8 @@ def connection(request, username):
         else:
             print("invalid")
             print(form.errors)
-    this_connection = Connection.objects.get(earthling=User.objects.get(username=username))
-    messages = Message.objects.filter(Q(msg_to=this_connection.earthling)|Q(msg_from=this_connection.earthling)).order_by('-id')
+    earthling=User.objects.get(username=username)
+    message1 = Message.objects.filter(Q(msg_to=earthling)|Q(msg_from=earthling))
+    message2 = Message.objects.filter(Q(msg_to=request.user)|Q(msg_from=request.user))
+    messages = message1.intersection(message2).order_by('-id')
     return render(request, "videoview.html", {"messages":messages, "form": form})
