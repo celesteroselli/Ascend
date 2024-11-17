@@ -7,15 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/cc67a321ce.js" crossorigin="anonymous"></script>
 
     <style>
         body {
             background-color: black;
         }
         .icon {
-            width: 35px;
-            font-size: 2em;
+            width: 40px;
+            padding: 7px;
+            font-size: 2.3em;
         }
         .nav {
           top: 0;
@@ -55,7 +56,8 @@
           overflow-x: auto; 
           white-space: nowrap; 
           scrollbar-width: thin; 
-          height: 140px;
+          height: 160px;
+          padding-bottom:10px;
         }
   
   
@@ -75,8 +77,8 @@
           padding: 5px;
           border-radius: 50%;
           object-fit: cover;
-          width: 120px;
-          height: 120px;
+          width: 140px;
+          height: 140px;
         }
   
   
@@ -127,7 +129,7 @@
       <body class="body">
       <div class="nav">
         <div class="logo"><a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" width=280px></a></div>
-        <div class="user"><a data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-user icon"></i></a></div> 
+        <div class="user"><a data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="icon fa-solid fa-user" style="color: #B197FC;"></i></a></div> 
       </div>
       <div class = "scroll-container"> 
       <a class="link_user_profile" href="{% url 'connection' 'celesteroselli' %}"><img src="{% static 'pp1.png' %}" class="person_pic"></a>
@@ -156,7 +158,7 @@
         <div class="modal-body">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}  
-                {{ form.as_p }}  
+                {{ cform.as_p }}  
                 <button type="submit" class="btn btn-primary">Save Settings</button>  
             </form> 
         </div>

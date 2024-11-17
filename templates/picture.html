@@ -11,14 +11,16 @@
 
 <style>
     .crop {
-        width: 600px;
+        width: 620px;
         height: 400px;
         overflow: hidden;
+        object-fit: cover;
+        object-position: center;
     }
 
     .demo-wrap {
     position: relative;
-    min-height: 1vh;
+    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,21 +34,20 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 140%;
   opacity: 0.5;
-  background-image: url("{{bg.url}}");
+  background-image: url("{% static 'front-page-bg' %}");
   background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-repeat: no-repeat; /* Do not repeat the image*/
   background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 .demo-content {
   position: relative;
-  top: 100px;
+  top: 70px;
 }
 </style>
 <div class="demo-wrap">
-  <div class="demo-content pt-5">
+  <div class="demo-content pt-4">
   <img class="crop animate__bounceIn" src="{{image_url}}">
   <h3 class="pt-4 text-white text-center">Here's your daily memory from {{date}}</h3>
 </div>
