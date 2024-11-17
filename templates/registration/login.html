@@ -112,7 +112,7 @@ footer{
         {{ form.password }}<br><br>
         {% csrf_token %}
         <input type="submit" class="button" id="add-button" value="Login">
-        <input type="submit" class="button" id="add-button" value="Login" style="display: none;">
+        //<input type="submit" class="button" id="add-button" value="Login" style="display: none;">
         </form>
     </div>
 </div>
@@ -125,18 +125,10 @@ footer{
 <script>
 const loginButton = document.getElementById("add-button");
 
-loginButton.addEventListener("click", function (event) {
-  event.preventDefault();
-
   for (let i = 0; i < 20; i++) {
     createLeftFallingStar(loginButton);
     createRightFallingStar(loginButton);  
   }
-  setTimeout(() => {
-    hiddenSubmitButton.click();
-  }, 1500); //THIS SHOULD
-});
-
 function createLeftFallingStar(button) {
   const star = document.createElement("div");
   star.classList.add("star");
