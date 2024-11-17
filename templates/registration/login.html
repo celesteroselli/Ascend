@@ -1,4 +1,4 @@
-{% block content %}
+% block content %}
 <style>
 body {
         position: absolute;
@@ -16,7 +16,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   flex-wrap: wrap;
-  color: white;
+  color:white;
 }
 
 .login-wrap{
@@ -47,8 +47,26 @@ h2{
 }
 footer{
     height: 10px;
-    background-color:#27212c;
+    background-color:#3c284f;
 }
+.star {
+  position: absolute;
+  font-size: 20px;
+  color: gold;
+  animation: fall 1.5s ease-out forwards;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(300px) rotate(360deg);
+  }
+}
+
 </style>
 <div class="body">
 <div class="body-wrap">
@@ -60,8 +78,9 @@ footer{
         <label for="pass">Password:</label><br><br>
         {{ form.password }}<br><br>
         {% csrf_token %}
-
-        <input type="submit" class="button" value="Login">
+        <div id="particle-area1"></div>   
+        <input type="submit" class="button" id="add-button" value="Login">
+        <div id="particle-area2"></div>   
         </form>
     </div>
 </div>
@@ -69,4 +88,39 @@ footer{
 <footer>
     <br>
 </footer>
+<script>
+const loginButton = document.getElementById("add-button");
+
+loginButton.addEventListener("click", function (event) {
+  event.preventDefault(); // delete later, just for testing
+
+  for (let i = 0; i < 3; i++) {
+    createFallingStar(loginButton);
+  }
+});
+
+function createFallingStar(button) {
+  const star = document.createElement("div");
+  star.classList.add("star");
+  star.textContent = "⭐";
+  const buttonRect = button.getBoundingClientRect();
+  const startX = buttonRect.left + Math.random() * buttonRect.width;
+  const startY = buttonRect.top;
+  document.body.appendChild(star);
+  star.style.position = "absolute";
+  star.style.left = `${startX}px`;
+  star.style.top = `${startY}px`;
+  const endX = startX + (Math.random() - 0.5) * 200;
+  const endY = startY + 300 + Math.random() * 100; 
+  star.style.transition = "transform 1.5s ease-out, opacity 1.5s ease-out";
+  requestAnimationFrame(() => {
+    star.style.transform = `translate(${endX - startX}px, ${endY - startY}px) rotate(360deg)`;
+    star.style.opacity = "0";
+  });
+  setTimeout(() => {
+    star.remove();
+  }, 1500);
+}
+
+</script>
 {% endblock %}
